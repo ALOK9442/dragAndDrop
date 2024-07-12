@@ -1,7 +1,7 @@
 # Mini_Page_Builder
- Almabase Frontend Inten Assignment
 
 The Mini Page Builder a tool for creating pages without needing to write a bunch of code, offering a user-centric approach to page creation. By leveraging intuitive drag-and-drop functionality and customizable elements, users can easily assemble and customize their pages with minimal effort.
+You can view the live website here:- <https://drag-and-drop-pied.vercel.app/>
 
 Key Features:-
 
@@ -65,4 +65,12 @@ Components:
     - All changes made to the page, including additions, edits, and deletions, are automatically saved to local storage.
 
 ### Screenshots
+
+<p align="center>
+ <img src="https://github.com/ALOK9442/dragAndDrop/blob/main/src/assets/previewImage/Screenshot%202024-07-12%20181639.png?raw=true"/>
+ <img src="https://github.com/ALOK9442/dragAndDrop/blob/main/src/assets/previewImage/Screenshot%202024-07-12%20181655.png?raw=true"/>
+ <img src="https://github.com/ALOK9442/dragAndDrop/blob/main/src/assets/previewImage/Screenshot%202024-07-12%20182018.png?raw=true"/>
+ <img src="https://github.com/ALOK9442/dragAndDrop/blob/main/src/assets/previewImage/Screenshot%202024-07-12%20182108.png?raw=true"/>
+ <img src="https://github.com/ALOK9442/dragAndDrop/blob/main/src/assets/previewImage/Screenshot%202024-07-12%20181639.png?raw=true"/>
+ </p>
 
