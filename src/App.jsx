@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
+import Sidebar from "./components/sidebar";
 
-function App() {
-  const [count, setCount] = useState(0)
+// Define the main App component
+const App = () => {
+  const [currentElementDetails, setCurrentElementDetails] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [focusedElement, setFocusedElement] = useState(null);
+  const [savedElements, setSavedElements] = useState(
+    JSON.parse(localStorage.getItem("elements")) || {}
+  );
+
+  const handleElementDelete = (id) => {
+    const updatedElements = JSON.parse(JSON.stringify(savedElements));
+    delete updatedElements[id];
+    localStorage.setItem("elements", JSON.stringify(updatedElements));
+    setSavedElements(updatedElements);
+  };
+  const handleElementUpdate = (id) => {
+    setCurrentElementDetails(savedElements[id]);
+    setShowModal(true);
+  };
+
+  const handleKeyDown = (event) => {
+    if (focusedElement && !showModal) {
+      if (event.key === "Enter") {
+        handleElementUpdate(focusedElement);
+      } else if (event.key === "Delete") {
+        handleElementDelete(focusedElement);
+        setFocusedElement(null);
+      }
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="app" onKeyDown={handleKeyDown} tabIndex={0}>
+      <Sidebar
+        setCurrentElementDetails={setCurrentElementDetails}
+        setShowModal={setShowModal}
+      />
+    </div>
+  );
+};
 
-export default App
+export default App;
