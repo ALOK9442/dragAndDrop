@@ -25,9 +25,13 @@ export const MenuItem = ({ type, setCurrentElementDetails, setShowModal }) => {
 
   return (
     <div
-      className="draggable-element"
+      className="draggable-element cursor-grab"
       draggable="true"
       onDragEnd={handleDragEnd}
+      onDrag={(e) => {
+        e.preventDefault();
+        document.body.style.cursor = "grabbing";
+      }}
     >
       <MenuIcon />
       {type}

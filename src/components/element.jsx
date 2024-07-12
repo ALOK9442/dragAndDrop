@@ -11,14 +11,20 @@ export default function Element({
   focused,
   onDragEnd,
 }) {
+  // Calculate relative positions based on the viewport size
+  const leftPercentage = (x / window.innerWidth) * 100;
+  const topPercentage = (y / window.innerHeight) * 100;
+
   // Common styles for elements
   const commonStyles = {
     position: "absolute",
-    left: x + "px",
-    top: y + "px",
+    left: leftPercentage + "vw",
+    top: topPercentage + "vh",
     fontSize: fontSize + "px",
     fontWeight: fontWeight,
+    cursor: "pointer",
   };
+
   if (focused) {
     if (type === "input") {
       commonStyles.outline = "2px solid red";
@@ -32,7 +38,10 @@ export default function Element({
     style: commonStyles,
     draggable: "true",
     onClick,
-    onDragEnd,
+    onDragEnd: (e) => {
+      document.body.style.cursor = 'auto';
+      onDragEnd(e);
+    },
   };
 
   switch (type) {

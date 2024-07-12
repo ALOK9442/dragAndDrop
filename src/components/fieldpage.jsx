@@ -1,7 +1,7 @@
 import React from "react";
 import Element from "./element";
 
-export default function FieldPage({
+export default function Board({
   elements = {},
   focusedElement,
   setFocusedElement,

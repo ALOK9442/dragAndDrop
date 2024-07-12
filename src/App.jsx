@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import Sidebar from "./components/sidebar";
-import FieldPage from "./components/fieldpage";
 import Modal from "./components/modal";
+import Board from "./components/fieldpage";
 
 // Define the main App component
 const App = () => {
@@ -56,7 +56,7 @@ const App = () => {
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      <FieldPage
+      <Board
         elements={savedElements}
         focusedElement={focusedElement}
         setFocusedElement={setFocusedElement}
