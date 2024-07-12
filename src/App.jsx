@@ -4,7 +4,12 @@ import Sidebar from "./components/sidebar";
 import Modal from "./components/modal";
 import Board from "./components/fieldpage";
 
-// Define the main App component
+
+/**
+ * Main application component managing the board, sidebar, and modal interactions.
+ * Allows users to manage elements on a board, update their details, delete them,
+ * and perform drag-and-drop operations.
+ */
 const App = () => {
   const [currentElementDetails, setCurrentElementDetails] = useState({});
   const [showModal, setShowModal] = useState(false);
