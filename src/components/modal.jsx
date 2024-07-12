@@ -1,27 +1,36 @@
 import React, { useState } from "react";
 
+/**
+ * Modal component for editing or adding elements.
+ * Allows users to modify element details such as text, position, font size, and font weight.
+ */
 const Modal = ({ setShowModal, element = {}, handleAddOrUpdateElement }) => {
   const { id } = element;
 
+  // State to manage form input values
   const [formValues, setFormValues] = useState(
     JSON.parse(JSON.stringify(element))
   );
 
+  // Function to close the modal
   const handleClose = () => {
     setShowModal(false);
   };
 
+  // Function to handle input changes
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormValues((prevState) => ({ ...prevState, [id]: value }));
   };
 
+  // Function to handle form submission
   const handleSave = (e) => {
     e.preventDefault();
     const { text, x, y, fontSize, fontWeight } = formValues;
+    // Validation: Ensure required fields are filled
     if (text && x && y && fontSize && fontWeight) {
-      handleAddOrUpdateElement({ id, ...formValues });
-      setShowModal(false);
+      handleAddOrUpdateElement({ id, ...formValues }); // Adds or updates element with form values
+      setShowModal(false); // Closes the modal after saving changes
     }
   };
 
@@ -33,11 +42,13 @@ const Modal = ({ setShowModal, element = {}, handleAddOrUpdateElement }) => {
         onSubmit={handleSave}
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Close button */}
         <div className="z-100 p-2 text-[#ccc] cursor-pointer top-[10px] right-[0px] absolute" onClick={handleClose}>
           X
         </div>
         <div className="modal-content">
           <h2 className="modal-heading">Edit Label</h2>
+          {/* Input fields for editing element details */}
           <div className="input-label">Text</div>
           <input
             id="text"
@@ -79,6 +90,7 @@ const Modal = ({ setShowModal, element = {}, handleAddOrUpdateElement }) => {
             onChange={handleChange}
           />
         </div>
+        {/* Save button */}
         <input
           type="submit"
           value="Save Changes"
