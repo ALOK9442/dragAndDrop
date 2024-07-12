@@ -23,6 +23,8 @@ export default function Element({
     fontSize: fontSize + "px",
     fontWeight: fontWeight,
     cursor: "pointer",
+    padding: "8px",
+    width: "max-content",
   };
 
   if (focused) {
