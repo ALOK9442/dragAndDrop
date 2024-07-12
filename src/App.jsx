@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import Sidebar from "./components/sidebar";
+import FieldPage from "./components/fieldpage";
+import Modal from "./components/modal";
 
 // Define the main App component
 const App = () => {
@@ -33,12 +35,45 @@ const App = () => {
     }
   };
 
+  const handleAddOrUpdateElement = (element) => {
+    const updatedElements = { ...savedElements, [element.id]: element };
+    localStorage.setItem("elements", JSON.stringify(updatedElements));
+    setSavedElements(updatedElements);
+    setCurrentElementDetails({});
+  };
+
+  const handleDragAndDrop = (id, x, y) => {
+    const updatedElements = JSON.parse(JSON.stringify(savedElements));
+    updatedElements[id].x = x;
+    updatedElements[id].y = y;
+    localStorage.setItem("elements", JSON.stringify(updatedElements));
+    setSavedElements(updatedElements);
+  };
+
   return (
-    <div className="app" onKeyDown={handleKeyDown} tabIndex={0}>
+    <div
+      className="app sm:flex-row flex-col"
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+    >
+      <FieldPage
+        elements={savedElements}
+        focusedElement={focusedElement}
+        setFocusedElement={setFocusedElement}
+        handleDragAndDrop={handleDragAndDrop}
+      />
       <Sidebar
         setCurrentElementDetails={setCurrentElementDetails}
         setShowModal={setShowModal}
       />
+
+      {showModal && (
+        <Modal
+          setShowModal={setShowModal}
+          element={currentElementDetails}
+          handleAddOrUpdateElement={handleAddOrUpdateElement}
+        />
+      )}
     </div>
   );
 };
