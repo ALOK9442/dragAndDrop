@@ -56,7 +56,7 @@ export default function Element({
     case "label":
       return <span {...commonProps}>{text}</span>;
     case "input":
-      return <input {...commonProps} type="text" placeholder={text} />;
+      return <input {...commonProps} type="text" placeholder={text} className="text-black" />;
     case "button":
       return (
         <button
